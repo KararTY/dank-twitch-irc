@@ -1,6 +1,6 @@
 {
   "name": "@aidenhadisi/amazeful-twitch-irc",
-  "version": "4.4.6",
+  "version": "4.5.1",
   "description": "Twitch IRC library for Node.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

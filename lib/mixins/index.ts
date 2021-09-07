@@ -4,3 +4,4 @@ export * from "./base-mixin";
 export * from "./ignore-promise-rejections";
 export * from "./roomstate-tracker";
 export * from "./userstate-tracker";
+export * from "./connection-pool";
