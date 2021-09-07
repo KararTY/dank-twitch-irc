@@ -26,6 +26,7 @@ import { validateChannelName, correctChannelName } from "../validation/channel";
 import { BaseClient } from "./base-client";
 import { SingleConnection } from "./connection";
 import { ClientError } from "./errors";
+import { deleteMsg } from "../operations/deleteMsg";
 
 const log = debugLogger("dank-twitch-irc:client");
 
@@ -226,6 +227,13 @@ export class ChatClient extends BaseClient {
     reason?: string
   ): Promise<void> {
     await ban(this.requireConnection(), channelName, username, reason);
+  }
+
+  public async deleteMsg(
+    channelName: string,
+    messageID: string
+  ): Promise<void> {
+    await deleteMsg(this.requireConnection(), channelName, messageID);
   }
 
   public async whisper(username: string, message: string): Promise<void> {
