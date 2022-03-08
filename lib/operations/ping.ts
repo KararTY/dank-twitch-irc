@@ -7,7 +7,7 @@ import { PongMessage } from "../message/twitch-types/connection/pong";
 export class PingTimeoutError extends ConnectionError {}
 
 function randomPingIdentifier(): string {
-  const randomHexString = randombytes(32).toString("hex").toLowerCase();
+  const randomHexString = randombytes(16).toString("hex").toLowerCase();
   return `dank-twitch-irc:manual:${randomHexString}`;
 }
 
