@@ -1,5 +1,5 @@
 module.exports = {
   quoteProps: "consistent",
   semi: true,
-  endOfLine: "crlf",
+  endOfLine: "lf",
 };
