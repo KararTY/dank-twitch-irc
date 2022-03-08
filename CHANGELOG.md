@@ -2,6 +2,7 @@
 
 ## Unversioned
 
+- refactor: Use randombytes instead of randomstring.
 - Bugfix: `ChatClient#connect()` method now properly resolves if `connect()` is called on a client that is already `ready`. (#218)
 
 ## v4.3.0
