@@ -18,7 +18,8 @@ export interface UserStateTrackerEvents {
  */
 export class UserStateTracker
   extends EventEmitter<UserStateTrackerEvents>
-  implements ClientMixin {
+  implements ClientMixin
+{
   public globalState?: GlobalUserState;
   public channelStates: Record<string, UserState> = {};
   private readonly client: ChatClient;

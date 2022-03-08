@@ -45,8 +45,7 @@ describe("./message/parser/twitch-message", function () {
         instanceOf: HosttargetMessage,
       },
       {
-        irc:
-          "@msg-id=host_on :tmi.twitch.tv NOTICE #randers :Now hosting Redshell.",
+        irc: "@msg-id=host_on :tmi.twitch.tv NOTICE #randers :Now hosting Redshell.",
         instanceOf: NoticeMessage,
       },
       {
@@ -86,13 +85,11 @@ describe("./message/parser/twitch-message", function () {
         instanceOf: WhisperMessage,
       },
       {
-        irc:
-          ":receivertest3!receivertest3@receivertest3.tmi.twitch.tv JOIN #randers",
+        irc: ":receivertest3!receivertest3@receivertest3.tmi.twitch.tv JOIN #randers",
         instanceOf: JoinMessage,
       },
       {
-        irc:
-          ":receivertest3!receivertest3@receivertest3.tmi.twitch.tv PART #randers",
+        irc: ":receivertest3!receivertest3@receivertest3.tmi.twitch.tv PART #randers",
         instanceOf: PartMessage,
       },
       {

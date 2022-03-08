@@ -19,7 +19,8 @@ export interface RoomStateTrackerEvents {
  */
 export class RoomStateTracker
   extends EventEmitter<RoomStateTrackerEvents>
-  implements ClientMixin {
+  implements ClientMixin
+{
   private readonly channelStates: Record<string, RoomState> = {};
 
   public getChannelState(channelName: string): RoomState | undefined {

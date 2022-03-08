@@ -47,9 +47,7 @@ export function parseViewerCount(
   return numberValue;
 }
 
-export function parseHosttargetParameter(
-  rawParameter: string
-): {
+export function parseHosttargetParameter(rawParameter: string): {
   hostedChannelName: string | undefined;
   viewerCount: number | undefined;
 } {

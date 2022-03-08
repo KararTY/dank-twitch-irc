@@ -44,46 +44,46 @@ export class AlternateMessageModifier implements ClientMixin {
       message: string
     ) => Promise<void>;
 
-    const genericReplament = (action: boolean): GenericReplacementFn => async <
-      A extends any[]
-    >(
-      oldFn: (
+    const genericReplament =
+      (action: boolean): GenericReplacementFn =>
+      async <A extends any[]>(
+        oldFn: (
+          channelName: string,
+          message: string,
+          ...args: A
+        ) => Promise<void>,
         channelName: string,
         message: string,
         ...args: A
-      ) => Promise<void>,
-      channelName: string,
-      message: string,
-      ...args: A
-    ): Promise<void> => {
-      const { fastSpam } = canSpamFast(
-        channelName,
-        client.configuration.username,
-        client.userStateTracker
-      );
+      ): Promise<void> => {
+        const { fastSpam } = canSpamFast(
+          channelName,
+          client.configuration.username,
+          client.userStateTracker
+        );
 
-      if (fastSpam) {
-        await oldFn(channelName, message, ...args);
-        return;
-      }
+        if (fastSpam) {
+          await oldFn(channelName, message, ...args);
+          return;
+        }
 
-      const newMsg = this.appendInvisibleCharacter(
-        channelName,
-        message,
-        action
-      );
-      await oldFn(channelName, newMsg, ...args);
+        const newMsg = this.appendInvisibleCharacter(
+          channelName,
+          message,
+          action
+        );
+        await oldFn(channelName, newMsg, ...args);
 
-      if (!this.client.joinedChannels.has(channelName)) {
-        // in this case we won't get our own message back via the
-        // onPrivmsg handler, so this will have to do. (Save the sent
-        // message)
-        this.lastMessages[channelName] = {
-          messageText: newMsg,
-          action,
-        };
-      }
-    };
+        if (!this.client.joinedChannels.has(channelName)) {
+          // in this case we won't get our own message back via the
+          // onPrivmsg handler, so this will have to do. (Save the sent
+          // message)
+          this.lastMessages[channelName] = {
+            messageText: newMsg,
+            action,
+          };
+        }
+      };
 
     applyReplacements(this, client, {
       say: genericReplament(false),

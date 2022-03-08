@@ -13,15 +13,18 @@ import {
   MessageRateLimits,
 } from "./message-rate-limits";
 
-export type ExpandedDuplexTransportConfiguration = Required<DuplexTransportConfiguration>;
+export type ExpandedDuplexTransportConfiguration =
+  Required<DuplexTransportConfiguration>;
 
-export type ExpandedTcpTransportConfiguration = Required<TcpTransportConfiguration> & {
-  preSetup: false;
-};
+export type ExpandedTcpTransportConfiguration =
+  Required<TcpTransportConfiguration> & {
+    preSetup: false;
+  };
 
-export type ExpandedWebSocketTransportConfiguration = WebSocketTransportConfiguration & {
-  preSetup: false;
-};
+export type ExpandedWebSocketTransportConfiguration =
+  WebSocketTransportConfiguration & {
+    preSetup: false;
+  };
 
 export type ExpandedTransportConfiguration =
   | ExpandedDuplexTransportConfiguration

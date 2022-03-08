@@ -38,9 +38,9 @@ describe("./mixins/userstate-tracker", function () {
         " #randers";
       emitAndEnd(msgRaw);
 
-      const expectedState = (parseTwitchMessage(
-        msgRaw
-      ) as UserstateMessage).extractUserState();
+      const expectedState = (
+        parseTwitchMessage(msgRaw) as UserstateMessage
+      ).extractUserState();
 
       await promisify(setImmediate);
 
@@ -94,9 +94,9 @@ describe("./mixins/userstate-tracker", function () {
         "0;user-type= :tmi.twitch.tv GLOBALUSERSTATE";
       emitAndEnd(msgRaw);
 
-      const expectedState = (parseTwitchMessage(
-        msgRaw
-      ) as GlobaluserstateMessage).extractGlobalUserState();
+      const expectedState = (
+        parseTwitchMessage(msgRaw) as GlobaluserstateMessage
+      ).extractGlobalUserState();
 
       await promisify(setImmediate);
 
@@ -166,9 +166,9 @@ describe("./mixins/userstate-tracker", function () {
 
       await promisify(setImmediate);
 
-      const secondMessageState = (parseTwitchMessage(
-        secondMessage
-      ) as UserstateMessage).extractUserState();
+      const secondMessageState = (
+        parseTwitchMessage(secondMessage) as UserstateMessage
+      ).extractUserState();
 
       assert.deepStrictEqual(
         userStateTracker.getChannelState("randers"),
