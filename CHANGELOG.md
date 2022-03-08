@@ -3,6 +3,7 @@
 ## Unversioned
 
 - refactor: Use randombytes instead of randomstring.
+- Minor: Added support for the `submysterygift` message type ID in `UserNoticeMessage`.
 - Bugfix: `ChatClient#connect()` method now properly resolves if `connect()` is called on a client that is already `ready`. (#218)
 
 ## v4.3.0
