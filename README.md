@@ -6,7 +6,7 @@ This package is a fork of robotty/dank-twitch-irc & fmalk/dank-twitch-irc & amaz
 
 Node.js-only Twitch IRC lib, written in TypeScript.
 
-Requires Node.js 14 (LTS) or above.
+Requires Node.js 14 or above.
 
 - [View on GitHub](https://github.com/robotty/dank-twitch-irc)
 - [View on npm](https://www.npmjs.com/package/dank-twitch-irc)
@@ -14,7 +14,6 @@ Requires Node.js 14 (LTS) or above.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 ## Table of Contents
 
 - [Usage](#usage)
