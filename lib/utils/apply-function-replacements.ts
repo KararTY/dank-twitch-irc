@@ -1,39 +1,19 @@
-import { A } from "ts-toolbelt";
-
-// modified O.SelectKeys type from ts-toolbelt that uses keyof O
-// instead of Keys<O>
-export declare type SelectKeys<O extends object, M extends any> = {
-  [K in keyof O]: {
-    1: K;
-    0: never;
-  }[A.Is<O[K], M>];
-}[keyof O];
-
-export type FunctionKeysOf<T extends object> = SelectKeys<
-  T,
-  (...args: any) => any
->;
-
-export type FunctionAt<T extends object, K extends FunctionKeysOf<T>> = (
-  ...args: Parameters<T[K]>
-) => ReturnType<T[K]>;
+export type FunctionPropsOf<T extends object> = {
+  [K in keyof T as T[K] extends (...args: any) => any ? K : never]: T[K];
+};
 
 export type OverrideFunction<
   S,
-  T extends object,
-  K extends FunctionKeysOf<T>
-> = (
-  this: S,
-  oldFn: FunctionAt<T, K>,
-  ...args: Parameters<T[K]>
-) => ReturnType<T[K]>;
+  T extends Record<string, (...args: any) => any>,
+  K extends keyof T
+> = (this: S, oldFn: T[K], ...args: Parameters<T[K]>) => ReturnType<T[K]>;
 
 export function applyReplacement<
   S,
-  T extends object,
-  K extends FunctionKeysOf<T>
+  T extends Record<string, any>,
+  K extends keyof T
 >(self: S, target: T, key: K, newFn: OverrideFunction<S, T, K>): void {
-  const oldFn: FunctionAt<T, K> = Reflect.get(target, key);
+  const oldFn: T[K] = Reflect.get(target, key);
 
   // build a new replacement function that is called instead of
   // the original function
@@ -56,11 +36,13 @@ export function applyReplacement<
   });
 }
 
-export type OverrideFunctions<S, T extends object> = {
-  [K in FunctionKeysOf<T>]?: OverrideFunction<S, T, K>;
+export type OverrideFunctions<S, T extends Record<string, any>> = {
+  [K in keyof T as T[K] extends (...args: any) => any
+    ? K
+    : never]?: OverrideFunction<S, T, K>;
 };
 
-export function applyReplacements<S, T extends object>(
+export function applyReplacements<S, T extends Record<string, any>>(
   self: S,
   target: T,
   replacements: OverrideFunctions<S, T>
