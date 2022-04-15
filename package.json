@@ -80,9 +80,9 @@
     "typescript": "4.1.3"
   },
   "bugs": {
-    "url": "https://github.com/Amazeful/dank-twitch-irc/issues"
+    "url": "https://github.com/kararty/dank-twitch-irc/issues"
   },
-  "homepage": "https://github.com/Amazeful/dank-twitch-irc#readme",
+  "homepage": "https://github.com/kararty/dank-twitch-irc#readme",
   "directories": {
     "lib": "lib"
   }
