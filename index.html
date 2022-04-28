@@ -2,18 +2,17 @@
 <a href="#dank-twitch-irc" id="dank-twitch-irc" style="color: inherit; text-decoration: none;">
   <h1>dank-twitch-irc</h1>
 </a>
-<p>This package is a fork of robotty/dank-twitch-irc &amp; fmalk/dank-twitch-irc &amp; amazeful/amazeful-twitch-irc.</p>
+<p>This package is a fork of <a href="https://github.com/robotty/dank-twitch-irc">robotty/dank-twitch-irc</a>, with additional code from <a href="https://github.com/fmalk/dank-twitch-irc">fmalk/dank-twitch-irc</a> &amp; <a href="https://github.com/amazeful/amazeful-twitch-irc">amazeful/amazeful-twitch-irc</a>.</p>
 <p><img src="https://github.com/kararty/dank-twitch-irc/workflows/Build/badge.svg" alt="Build"></p>
 <p>Node.js-only Twitch IRC lib, written in TypeScript.</p>
 <p>Requires Node.js 14 or above.</p>
 <ul>
-<li><a href="https://github.com/robotty/dank-twitch-irc">View on GitHub</a></li>
-<li><a href="https://www.npmjs.com/package/dank-twitch-irc">View on npm</a></li>
-<li><a href="https://robotty.github.io/dank-twitch-irc/">View documentation</a></li>
+<li><a href="https://github.com/kararty/dank-twitch-irc">View on GitHub</a></li>
+<li><a href="https://www.npmjs.com/package/@kararty/dank-twitch-irc">View on npm</a></li>
+<li><a href="https://kararty.github.io/dank-twitch-irc/">View documentation</a></li>
 </ul>
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 
 <a href="#table-of-contents" id="table-of-contents" style="color: inherit; text-decoration: none;">
   <h2>Table of Contents</h2>
@@ -45,7 +44,7 @@
 <a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
   <h2>Usage</h2>
 </a>
-<pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> { </span><span class="hl-2">ChatClient</span><span class="hl-1"> } = </span><span class="hl-3">require</span><span class="hl-1">(</span><span class="hl-4">&quot;dank-twitch-irc&quot;</span><span class="hl-1">);</span><br/><span class="hl-0">let</span><span class="hl-1"> </span><span class="hl-5">client</span><span class="hl-1"> = </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-3">ChatClient</span><span class="hl-1">();</span><br/><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">on</span><span class="hl-1">(</span><span class="hl-4">&quot;ready&quot;</span><span class="hl-1">, () </span><span class="hl-0">=&gt;</span><span class="hl-1"> </span><span class="hl-5">console</span><span class="hl-1">.</span><span class="hl-3">log</span><span class="hl-1">(</span><span class="hl-4">&quot;Successfully connected to chat&quot;</span><span class="hl-1">));</span><br/><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">on</span><span class="hl-1">(</span><span class="hl-4">&quot;close&quot;</span><span class="hl-1">, (</span><span class="hl-5">error</span><span class="hl-1">) </span><span class="hl-0">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-6">if</span><span class="hl-1"> (</span><span class="hl-5">error</span><span class="hl-1"> != </span><span class="hl-0">null</span><span class="hl-1">) {</span><br/><span class="hl-1">    </span><span class="hl-5">console</span><span class="hl-1">.</span><span class="hl-3">error</span><span class="hl-1">(</span><span class="hl-4">&quot;Client closed due to error&quot;</span><span class="hl-1">, </span><span class="hl-5">error</span><span class="hl-1">);</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">});</span><br/><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">on</span><span class="hl-1">(</span><span class="hl-4">&quot;PRIVMSG&quot;</span><span class="hl-1">, (</span><span class="hl-5">msg</span><span class="hl-1">) </span><span class="hl-0">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-5">console</span><span class="hl-1">.</span><span class="hl-3">log</span><span class="hl-1">(</span><span class="hl-4">`[#</span><span class="hl-0">${</span><span class="hl-5">msg</span><span class="hl-7">.</span><span class="hl-5">channelName</span><span class="hl-0">}</span><span class="hl-4">] </span><span class="hl-0">${</span><span class="hl-5">msg</span><span class="hl-7">.</span><span class="hl-5">displayName</span><span class="hl-0">}</span><span class="hl-4">: </span><span class="hl-0">${</span><span class="hl-5">msg</span><span class="hl-7">.</span><span class="hl-5">messageText</span><span class="hl-0">}</span><span class="hl-4">`</span><span class="hl-1">);</span><br/><span class="hl-1">});</span><br/><span class="hl-8">// See below for more events</span><br/><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">connect</span><span class="hl-1">();</span><br/><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">join</span><span class="hl-1">(</span><span class="hl-4">&quot;forsen&quot;</span><span class="hl-1">);</span>
+<pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> { </span><span class="hl-2">ChatClient</span><span class="hl-1"> } = </span><span class="hl-3">require</span><span class="hl-1">(</span><span class="hl-4">&quot;@kararty/dank-twitch-irc&quot;</span><span class="hl-1">);</span><br/><span class="hl-0">let</span><span class="hl-1"> </span><span class="hl-5">client</span><span class="hl-1"> = </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-3">ChatClient</span><span class="hl-1">();</span><br/><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">on</span><span class="hl-1">(</span><span class="hl-4">&quot;ready&quot;</span><span class="hl-1">, () </span><span class="hl-0">=&gt;</span><span class="hl-1"> </span><span class="hl-5">console</span><span class="hl-1">.</span><span class="hl-3">log</span><span class="hl-1">(</span><span class="hl-4">&quot;Successfully connected to chat&quot;</span><span class="hl-1">));</span><br/><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">on</span><span class="hl-1">(</span><span class="hl-4">&quot;close&quot;</span><span class="hl-1">, (</span><span class="hl-5">error</span><span class="hl-1">) </span><span class="hl-0">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-6">if</span><span class="hl-1"> (</span><span class="hl-5">error</span><span class="hl-1"> != </span><span class="hl-0">null</span><span class="hl-1">) {</span><br/><span class="hl-1">    </span><span class="hl-5">console</span><span class="hl-1">.</span><span class="hl-3">error</span><span class="hl-1">(</span><span class="hl-4">&quot;Client closed due to error&quot;</span><span class="hl-1">, </span><span class="hl-5">error</span><span class="hl-1">);</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">});</span><br/><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">on</span><span class="hl-1">(</span><span class="hl-4">&quot;PRIVMSG&quot;</span><span class="hl-1">, (</span><span class="hl-5">msg</span><span class="hl-1">) </span><span class="hl-0">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-5">console</span><span class="hl-1">.</span><span class="hl-3">log</span><span class="hl-1">(</span><span class="hl-4">`[#</span><span class="hl-0">${</span><span class="hl-5">msg</span><span class="hl-7">.</span><span class="hl-5">channelName</span><span class="hl-0">}</span><span class="hl-4">] </span><span class="hl-0">${</span><span class="hl-5">msg</span><span class="hl-7">.</span><span class="hl-5">displayName</span><span class="hl-0">}</span><span class="hl-4">: </span><span class="hl-0">${</span><span class="hl-5">msg</span><span class="hl-7">.</span><span class="hl-5">messageText</span><span class="hl-0">}</span><span class="hl-4">`</span><span class="hl-1">);</span><br/><span class="hl-1">});</span><br/><span class="hl-8">// See below for more events</span><br/><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">connect</span><span class="hl-1">();</span><br/><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">join</span><span class="hl-1">(</span><span class="hl-4">&quot;forsen&quot;</span><span class="hl-1">);</span>
 </code></pre>
 
 <a href="#available-client-events" id="available-client-events" style="color: inherit; text-decoration: none;">
@@ -91,55 +90,55 @@ properties exist on all <code>PrivmsgMessage</code> instances)</p>
 </code></pre>
 <p>Other message types that have specific message parsing are:</p>
 <ul>
-<li><strong><code>CLEARCHAT</code></strong> (maps to <a href="https://robotty.github.io/dank-twitch-irc/classes/clearchatmessage.html"><code>ClearchatMessage</code></a>) - Timeout and ban
+<li><strong><code>CLEARCHAT</code></strong> (maps to <a href="https://kararty.github.io/dank-twitch-irc/classes/ClearchatMessage.html"><code>ClearchatMessage</code></a>) - Timeout and ban
 messages</li>
-<li><strong><code>CLEARMSG</code></strong> (maps to <a href="https://robotty.github.io/dank-twitch-irc/classes/clearmsgmessage.html"><code>ClearmsgMessage</code></a>) - Single message
+<li><strong><code>CLEARMSG</code></strong> (maps to <a href="https://kararty.github.io/dank-twitch-irc/classes/ClearmsgMessage.html"><code>ClearmsgMessage</code></a>) - Single message
 deletions (initiated by <code>/delete</code>)</li>
-<li><strong><code>HOSTTARGET</code></strong> (maps to <a href="https://robotty.github.io/dank-twitch-irc/classes/hosttargetmessage.html"><code>HosttargetMessage</code></a>) - A channel
+<li><strong><code>HOSTTARGET</code></strong> (maps to <a href="https://kararty.github.io/dank-twitch-irc/classes/HosttargetMessage.html"><code>HosttargetMessage</code></a>) - A channel
 entering or exiting host mode.</li>
-<li><strong><code>NOTICE</code></strong> (maps to <a href="https://robotty.github.io/dank-twitch-irc/classes/noticemessage.html"><code>NoticeMessage</code></a>) - Various notices, such as
+<li><strong><code>NOTICE</code></strong> (maps to <a href="https://kararty.github.io/dank-twitch-irc/classes/NoticeMessage.html"><code>NoticeMessage</code></a>) - Various notices, such as
 when you <code>/help</code>, a command fails, the error response when you are timed
 out, etc.</li>
-<li><strong><code>PRIVMSG</code></strong> (maps to <a href="https://robotty.github.io/dank-twitch-irc/classes/privmsgmessage.html"><code>PrivmsgMessage</code></a>) - Normal chat messages</li>
-<li><strong><code>ROOMSTATE</code></strong> (maps to <a href="https://robotty.github.io/dank-twitch-irc/classes/roomstatemessage.html"><code>RoomstateMessage</code></a>) - A change to a
+<li><strong><code>PRIVMSG</code></strong> (maps to <a href="https://kararty.github.io/dank-twitch-irc/classes/PrivmsgMessage.html"><code>PrivmsgMessage</code></a>) - Normal chat messages</li>
+<li><strong><code>ROOMSTATE</code></strong> (maps to <a href="https://kararty.github.io/dank-twitch-irc/classes/RoomstateMessage.html"><code>RoomstateMessage</code></a>) - A change to a
 channel&#39;s followers mode, subscribers-only mode, r9k mode, followers mode,
 slow mode etc.</li>
-<li><strong><code>USERNOTICE</code></strong> (maps to <a href="https://robotty.github.io/dank-twitch-irc/classes/usernoticemessage.html"><code>UsernoticeMessage</code></a>) - Subs, resubs,
+<li><strong><code>USERNOTICE</code></strong> (maps to <a href="https://kararty.github.io/dank-twitch-irc/classes/UsernoticeMessage.html"><code>UsernoticeMessage</code></a>) - Subs, resubs,
 sub gifts, rituals, raids, etc. - See more details about how to handle this
 message type below.</li>
-<li><strong><code>USERSTATE</code></strong> (maps to <a href="https://robotty.github.io/dank-twitch-irc/classes/userstatemessage.html"><code>UserstateMessage</code></a>) - Your own state
+<li><strong><code>USERSTATE</code></strong> (maps to <a href="https://kararty.github.io/dank-twitch-irc/classes/UserstateMessage.html"><code>UserstateMessage</code></a>) - Your own state
 (e.g. badges, color, display name, emote sets, mod status), sent on every
 time you join a channel or send a <code>PRIVMSG</code> to a channel</li>
 <li><strong><code>GLOBALUSERSTATE</code></strong> (maps to
-<a href="https://robotty.github.io/dank-twitch-irc/classes/globaluserstatemessage.html"><code>GlobaluserstateMessage</code></a>) - Logged in user&#39;s &quot;global
+<a href="https://kararty.github.io/dank-twitch-irc/classes/GlobaluserstateMessage.html"><code>GlobaluserstateMessage</code></a>) - Logged in user&#39;s &quot;global
 state&quot;, sent once on every login (Note that due to the used connection pool
 you can receive this multiple times during your bot&#39;s runtime)</li>
-<li><strong><code>WHISPER</code></strong> (maps to <a href="https://robotty.github.io/dank-twitch-irc/classes/whispermessage.html"><code>WhisperMessage</code></a>) - Somebody else
+<li><strong><code>WHISPER</code></strong> (maps to <a href="https://kararty.github.io/dank-twitch-irc/classes/WhisperMessage.html"><code>WhisperMessage</code></a>) - Somebody else
 whispering you</li>
-<li><strong><code>JOIN</code></strong> (maps to <a href="https://robotty.github.io/dank-twitch-irc/classes/joinmessage.html"><code>JoinMessage</code></a>) - You yourself joining a channel,
+<li><strong><code>JOIN</code></strong> (maps to <a href="https://kararty.github.io/dank-twitch-irc/classes/JoinMessage.html"><code>JoinMessage</code></a>) - You yourself joining a channel,
 of if you have <code>requestMembershipCapability</code> enabled, also other users
 joining channels you are joined to.</li>
-<li><strong><code>PART</code></strong> (maps to <a href="https://robotty.github.io/dank-twitch-irc/classes/partmessage.html"><code>JoinMessage</code></a>) - You yourself parting (leaving)
+<li><strong><code>PART</code></strong> (maps to <a href="https://kararty.github.io/dank-twitch-irc/classes/PartMessage.html"><code>JoinMessage</code></a>) - You yourself parting (leaving)
 a channel, of if you have <code>requestMembershipCapability</code> enabled, also other
 users parting channels you are joined to.</li>
-<li><strong><code>RECONNECT</code></strong> (maps to <a href="https://robotty.github.io/dank-twitch-irc/classes/reconnectmessage.html"><code>ReconnectMessage</code></a>) - When the twitch
+<li><strong><code>RECONNECT</code></strong> (maps to <a href="https://kararty.github.io/dank-twitch-irc/classes/ReconnectMessage.html"><code>ReconnectMessage</code></a>) - When the twitch
 server tells a client to reconnect and re-join channels (You don&#39;t have to
 listen for this yourself, this is done automatically already)</li>
-<li><strong><code>PING</code></strong> (maps to <a href="https://robotty.github.io/dank-twitch-irc/classes/pingmessage.html"><code>PingMessage</code></a>) - When the twitch server sends a
+<li><strong><code>PING</code></strong> (maps to <a href="https://kararty.github.io/dank-twitch-irc/classes/PingMessage.html"><code>PingMessage</code></a>) - When the twitch server sends a
 ping, expecting a pong back from the client to verify if the connection is
 still alive. (You don&#39;t have to listen for this yourself, the client
 automatically responds for you)</li>
-<li><strong><code>PONG</code></strong> (maps to <a href="https://robotty.github.io/dank-twitch-irc/classes/pongmessage.html"><code>PongMessage</code></a>) - When the twitch server responds
+<li><strong><code>PONG</code></strong> (maps to <a href="https://kararty.github.io/dank-twitch-irc/classes/PongMessage.html"><code>PongMessage</code></a>) - When the twitch server responds
 to our <code>PING</code> requests (The library automatically sends a <code>PING</code> request
 every 30 seconds to verify connections are alive)</li>
-<li><strong><code>CAP</code></strong> (maps to <a href="https://robotty.github.io/dank-twitch-irc/classes/capmessage.html"><code>CapMessage</code></a>) - Message type received once during
+<li><strong><code>CAP</code></strong> (maps to <a href="https://kararty.github.io/dank-twitch-irc/classes/CapMessage.html"><code>CapMessage</code></a>) - Message type received once during
 connection startup, acknowledging requested capabilities.</li>
 </ul>
 </li>
 </ul>
 <p>All other commands (if they don&#39;t have a special parsed type like the ones
 listed above) will still be emitted under their command name as an
-<a href="https://robotty.github.io/dank-twitch-irc/classes/ircmessage.html"><code>IRCMessage</code></a>, e.g.:</p>
+<a href="https://kararty.github.io/dank-twitch-irc/classes/IRCMessage.html"><code>IRCMessage</code></a>, e.g.:</p>
 <pre><code class="language-javascript"><span class="hl-8">// :tmi.twitch.tv 372 botfactory :You are in a maze of twisty passages, all alike.</span><br/><span class="hl-8">// msg will be an instance of IRCMessage</span><br/><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">on</span><span class="hl-1">(</span><span class="hl-4">&quot;372&quot;</span><span class="hl-1">, (</span><span class="hl-5">msg</span><span class="hl-1">) </span><span class="hl-0">=&gt;</span><br/><span class="hl-1">  </span><span class="hl-5">console</span><span class="hl-1">.</span><span class="hl-3">log</span><span class="hl-1">(</span><span class="hl-4">`Server MOTD is: </span><span class="hl-0">${</span><span class="hl-5">msg</span><span class="hl-7">.</span><span class="hl-5">ircParameters</span><span class="hl-7">[</span><span class="hl-9">1</span><span class="hl-7">]</span><span class="hl-0">}</span><span class="hl-4">`</span><span class="hl-1">)</span><br/><span class="hl-1">);</span>
 </code></pre>
 
@@ -295,7 +294,7 @@ would be <code>forsen</code>, not <code>#forsen</code>).</p>
   <h2>API Documentation</h2>
 </a>
 <p>Generated API documentation can be found here:
-<a href="https://robotty.github.io/dank-twitch-irc">https://robotty.github.io/dank-twitch-irc</a></p>
+<a href="https://kararty.github.io/dank-twitch-irc">https://kararty.github.io/dank-twitch-irc</a></p>
 
 <a href="#client-options" id="client-options" style="color: inherit; text-decoration: none;">
   <h2>Client options</h2>
@@ -341,7 +340,7 @@ subscribing to the error event</li>
 <p>There are some features you might find useful in your bot that are not necessary
 for general client/bot operations, so they were packaged as <strong>mixins</strong>. You can
 activate mixins by calling:</p>
-<pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> { </span><span class="hl-2">ChatClient</span><span class="hl-1">, </span><span class="hl-2">AlternateMessageModifier</span><span class="hl-1"> } = </span><span class="hl-3">require</span><span class="hl-1">(</span><span class="hl-4">&quot;dank-twitch-irc&quot;</span><span class="hl-1">);</span><br/><span class="hl-0">let</span><span class="hl-1"> </span><span class="hl-5">client</span><span class="hl-1"> = </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-3">ChatClient</span><span class="hl-1">();</span><br/><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">use</span><span class="hl-1">(</span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-3">AlternateMessageModifier</span><span class="hl-1">(</span><span class="hl-5">client</span><span class="hl-1">));</span>
+<pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> { </span><span class="hl-2">ChatClient</span><span class="hl-1">, </span><span class="hl-2">AlternateMessageModifier</span><span class="hl-1"> } = </span><span class="hl-3">require</span><span class="hl-1">(</span><span class="hl-4">&quot;@kararty/dank-twitch-irc&quot;</span><span class="hl-1">);</span><br/><span class="hl-0">let</span><span class="hl-1"> </span><span class="hl-5">client</span><span class="hl-1"> = </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-3">ChatClient</span><span class="hl-1">();</span><br/><span class="hl-5">client</span><span class="hl-1">.</span><span class="hl-3">use</span><span class="hl-1">(</span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-3">AlternateMessageModifier</span><span class="hl-1">(</span><span class="hl-5">client</span><span class="hl-1">));</span>
 </code></pre>
 <p>Available mixins are:</p>
 <ul>
