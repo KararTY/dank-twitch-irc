@@ -1,5 +1,9 @@
 # Changelog
 
+## Unversioned
+
+- Minor: Added announce() method & AnnouncementMessage Usernotice for eventParams & isAnnouncement() method on messages.
+
 ## v4.6.0
 
 - Minor: Use randombytes instead of randomstring.
