@@ -54,7 +54,7 @@ export interface EventParams {
 }
 
 export interface EventParamsMaybe {
-  [key: string]?: string | undefined;
+  [key: string]: string | undefined;
 }
 
 export function extractEventParams(tags: IRCMessageTags): EventParams {
