@@ -247,7 +247,7 @@ describe("./message/twitch-types/usernotice", function () {
 
       assert.strictEqual(msg.ircCommand, "USERNOTICE");
       assert.strictEqual(msg.ircTags["msg-param-color"], undefined);
-      assert.strictEqual(msg.eventParams.color, "");
+      assert.strictEqual(msg.eventParams.color, undefined);
       assert.strictEqual(msg.messageTypeID, "announcement");
     });
 
