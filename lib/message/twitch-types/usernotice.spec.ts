@@ -239,7 +239,7 @@ describe("./message/twitch-types/usernotice", function () {
       });
     });
 
-    it("should be able to parse an announcement usernotice that was sentt via IRC", function () {
+    it("should be able to parse an announcement usernotice that was sent via IRC", function () {
       const msg = parseTwitchMessage(
         "@badge-info=;badges=broadcaster/1,glitchcon2020/1;color=#666666;display-name=NotKarar;emotes=;flags=;id=fb6f330a-b47e-4394-bdae-34c545143a1e;login=notkarar;mod=0;" +
           "msg-id=announcement;room-id=89954186;subscriber=0;system-msg=;tmi-sent-ts=1651337290447;user-id=89954186;user-type= :tmi.twitch.tv USERNOTICE #notkarar :test"
