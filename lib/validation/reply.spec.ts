@@ -30,7 +30,7 @@ describe("./validation/reply", function () {
 
     it("allows dashes", function () {
       validateMessageID("885196de-cb67-427a-baa8-82f9b0fcd05f");
-      validateMessageID("123e4567-e89b-12d3-a456-426614174000");
+      validateMessageID("8dfe2f75-a6c6-445a-927d-bfe7ad023c9f");
     });
   });
 });
