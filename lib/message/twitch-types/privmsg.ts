@@ -155,7 +155,9 @@ export class PrivmsgMessage
     this.flags = tagParser.getFlags("flags", this.messageText);
     this.flagsRaw = tagParser.getString("flags");
 
-    this.replyParentDisplayName = tagParser.getTrimmedString("reply-parent-display-name");
+    this.replyParentDisplayName = tagParser.getTrimmedString(
+      "reply-parent-display-name"
+    );
     this.replyParentMessageBody = tagParser.getString("reply-parent-msg-body");
     this.replyParentMessageID = tagParser.getString("reply-parent-msg-id");
     this.replyParentUserID = tagParser.getString("reply-parent-user-id");

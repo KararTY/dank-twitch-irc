@@ -47,10 +47,10 @@ export function convertToString(value: string): string {
 }
 
 export function convertToTrimmedString(value: string): string {
-  if (typeof value === 'string') {
-    return value.trim()
+  if (typeof value === "string") {
+    return value.trim();
   }
-  return value
+  return value;
 }
 
 export function convertToInt(value: string): number {
@@ -123,7 +123,8 @@ export interface TagValueParser {
 export function tagParserFor(ircTags: IRCMessageTags): TagValueParser {
   return {
     getString: (key: string) => getData(ircTags, key, convertToString),
-    getTrimmedString: (key: string) => getData(ircTags, key, convertToTrimmedString),
+    getTrimmedString: (key: string) =>
+      getData(ircTags, key, convertToTrimmedString),
     requireString: (key: string) => requireData(ircTags, key, convertToString),
     getInt: (key: string) => getData(ircTags, key, convertToInt),
     requireInt: (key: string) => requireData(ircTags, key, convertToInt),

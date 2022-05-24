@@ -112,5 +112,5 @@ export async function reply(
   messageID: string,
   message: string
 ): Promise<UserstateMessage> {
-  return say(conn, channelName, message, messageID)
+  return say(conn, channelName, message, messageID);
 }

@@ -184,10 +184,7 @@ export class ChatClient extends BaseClient {
     return sendPrivmsg(this.requireConnection(), channelName, message);
   }
 
-  public async say(
-    channelName: string,
-    message: string
-  ): Promise<void> {
+  public async say(channelName: string, message: string): Promise<void> {
     channelName = correctChannelName(channelName);
     validateChannelName(channelName);
     await say(
@@ -210,7 +207,11 @@ export class ChatClient extends BaseClient {
   /**
    * @param messageID The message ID you want to reply to.
    */
-  public async reply(channelName: string, messageID: string, message: string): Promise<void> {
+  public async reply(
+    channelName: string,
+    messageID: string,
+    message: string
+  ): Promise<void> {
     channelName = correctChannelName(channelName);
     validateChannelName(channelName);
     validateMessageID(messageID);
