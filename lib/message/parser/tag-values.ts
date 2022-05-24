@@ -46,6 +46,13 @@ export function convertToString(value: string): string {
   return value;
 }
 
+export function convertToTrimmedString(value: string): string {
+  if (typeof value === 'string') {
+    return value.trim()
+  }
+  return value
+}
+
 export function convertToInt(value: string): number {
   const parsedInt = parseInt(value);
   if (isNaN(parsedInt)) {
@@ -93,6 +100,8 @@ export function convertToFlags(
 
 export interface TagValueParser {
   getString(key: string): string | undefined;
+  // getTrimmedString: Used for sanitizing display-names. See https://github.com/robotty/dank-twitch-irc/issues/33
+  getTrimmedString(key: string): string | undefined;
   requireString(key: string): string;
   getInt(key: string): number | undefined;
   requireInt(key: string): number;
@@ -114,6 +123,7 @@ export interface TagValueParser {
 export function tagParserFor(ircTags: IRCMessageTags): TagValueParser {
   return {
     getString: (key: string) => getData(ircTags, key, convertToString),
+    getTrimmedString: (key: string) => getData(ircTags, key, convertToTrimmedString),
     requireString: (key: string) => requireData(ircTags, key, convertToString),
     getInt: (key: string) => getData(ircTags, key, convertToInt),
     requireInt: (key: string) => requireData(ircTags, key, convertToInt),

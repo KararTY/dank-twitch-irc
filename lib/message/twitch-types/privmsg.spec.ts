@@ -91,6 +91,12 @@ describe("./message/twitch-types/privmsg", function () {
       assert.isUndefined(msg.bits);
       assert.isUndefined(msg.bitsRaw);
 
+      assert.isUndefined(msg.replyParentDisplayName);
+      assert.isUndefined(msg.replyParentMessageBody);
+      assert.isUndefined(msg.replyParentMessageID);
+      assert.isUndefined(msg.replyParentUserID);
+      assert.isUndefined(msg.replyParentUserLogin);
+
       assert.deepStrictEqual(msg.color, { r: 0x19, g: 0xe6, b: 0xe6 });
       assert.strictEqual(msg.colorRaw, "#19E6E6");
 
@@ -125,6 +131,27 @@ describe("./message/twitch-types/privmsg", function () {
       });
 
       assert.isFalse(msg.isCheer());
+    });
+
+    it("should be able to parse a real reply PRIVMSG message", function () {
+      const msgText =
+        "@badge-info=subscriber/5;badges=broadcaster/1,subscriber/0;" +
+        "color=#19E6E6;display-name=randers;emotes=;flags=;id=7eb848c9-1060-4e5e-9f4c-612877982e79;mod=0;" +
+        "reply-parent-display-name=OtherUser;reply-parent-msg-body=Test:\\sAbc;reply-parent-msg-id=abcd;" +
+        "reply-parent-user-id=123;reply-parent-user-login=otheruser;room-id=40286300;subscriber=1;tmi-sent-ts=1563096499780;" +
+        "turbo=0;user-id=40286300;user-type= :randers!randers@randers.tmi.twitch.tv PRIVMSG #randers :test";
+
+      const msg: PrivmsgMessage = parseTwitchMessage(msgText) as PrivmsgMessage;
+
+      assert.instanceOf(msg, PrivmsgMessage);
+
+      assert.isTrue(msg.isReply());
+
+      assert.strictEqual(msg.replyParentDisplayName, "OtherUser");
+      assert.strictEqual(msg.replyParentMessageBody, "Test: Abc");
+      assert.strictEqual(msg.replyParentMessageID, "abcd");
+      assert.strictEqual(msg.replyParentUserID, "123");
+      assert.strictEqual(msg.replyParentUserLogin, "otheruser");
     });
 
     it("trims spaces at the end of display names", function () {

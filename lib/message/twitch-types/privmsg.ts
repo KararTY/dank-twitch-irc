@@ -37,6 +37,14 @@ interface CheerPrivmsgMessage extends PrivmsgMessage {
   readonly bitsRaw: string;
 }
 
+interface ReplyPrivmsgMessage extends PrivmsgMessage {
+  readonly replyParentDisplayName: string;
+  readonly replyParentMsgBody: string;
+  readonly replyParentMsgID: string;
+  readonly replyParentUserID: string;
+  readonly replyParentUserLogin: string;
+}
+
 /**
  * Omits `emoteSets` and `emoteSetsRaw` from {@link UserState} (because they are not sent
  * for `PRIVMSG` messages)
@@ -94,6 +102,12 @@ export class PrivmsgMessage
    */
   public readonly flagsRaw: string | undefined;
 
+  public readonly replyParentDisplayName: string | undefined;
+  public readonly replyParentMessageBody: string | undefined;
+  public readonly replyParentMessageID: string | undefined;
+  public readonly replyParentUserID: string | undefined;
+  public readonly replyParentUserLogin: string | undefined;
+
   public readonly messageID: string;
 
   public readonly isMod: boolean;
@@ -141,6 +155,12 @@ export class PrivmsgMessage
     this.flags = tagParser.getFlags("flags", this.messageText);
     this.flagsRaw = tagParser.getString("flags");
 
+    this.replyParentDisplayName = tagParser.getTrimmedString("reply-parent-display-name");
+    this.replyParentMessageBody = tagParser.getString("reply-parent-msg-body");
+    this.replyParentMessageID = tagParser.getString("reply-parent-msg-id");
+    this.replyParentUserID = tagParser.getString("reply-parent-user-id");
+    this.replyParentUserLogin = tagParser.getString("reply-parent-user-login");
+
     this.messageID = tagParser.requireString("id");
 
     this.isMod = tagParser.requireBoolean("mod");
@@ -170,5 +190,9 @@ export class PrivmsgMessage
 
   public isCheer(): this is CheerPrivmsgMessage {
     return this.bits != null;
+  }
+
+  public isReply(): this is ReplyPrivmsgMessage {
+    return this.replyParentMessageID != null;
   }
 }

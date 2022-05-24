@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Breaking: Removed replyTo from .say, added separate .reply() method in ChatClient.
+- Minor: Added tests & documentation for .reply() method.
+
 ## v4.6.0
 
 - Minor: Use randombytes instead of randomstring.
