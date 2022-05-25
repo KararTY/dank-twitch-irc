@@ -1,5 +1,7 @@
 # Changelog
 
+- Bugfix: Fix predictions parsing for badge-info. (#8)
+
 ## v4.6.0
 
 - Minor: Use randombytes instead of randomstring.
