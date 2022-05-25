@@ -44,7 +44,7 @@ export class TwitchBadge {
   }
 
   public get isPrediction(): boolean {
-    return this.name === 'predictions'
+    return this.name === "predictions";
   }
 
   public toString(): string {

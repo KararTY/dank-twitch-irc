@@ -12,7 +12,7 @@ export function parseSingleBadge(badgeSrc: string): TwitchBadge {
 
   // There is a slash.
   if (badgeVersion.length > 0) {
-    badgeVersionReplacedComma = badgeVersion.join("/").replace(/⸝/g, ',');
+    badgeVersionReplacedComma = badgeVersion.join("/").replace(/⸝/g, ",");
   }
 
   if (badgeName == null || badgeVersionReplacedComma == null) {
