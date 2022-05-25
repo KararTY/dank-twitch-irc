@@ -4,9 +4,18 @@ import { ParseError } from "./parse-error";
 
 export function parseSingleBadge(badgeSrc: string): TwitchBadge {
   // src format: <badge>/<version>
+  // src format for predictions: <badge>/<text with maybe an additional "/" slash or one of those ⸝>
 
-  const [badgeName, badgeVersion] = badgeSrc.split("/", 2);
-  if (badgeName == null || badgeVersion == null) {
+  const [badgeName, ...badgeVersion] = badgeSrc.split("/");
+
+  let badgeVersionReplacedComma;
+
+  // There is a slash.
+  if (badgeVersion.length > 0) {
+    badgeVersionReplacedComma = badgeVersion.join("/").replace(/⸝/g, ',');
+  }
+
+  if (badgeName == null || badgeVersionReplacedComma == null) {
     throw new ParseError(
       `Badge source "${badgeSrc}" did not contain '/' character`
     );
@@ -16,11 +25,11 @@ export function parseSingleBadge(badgeSrc: string): TwitchBadge {
     throw new ParseError(`Empty badge name on badge "${badgeSrc}"`);
   }
 
-  if (badgeVersion.length <= 0) {
+  if (badgeVersionReplacedComma.length <= 0) {
     throw new ParseError(`Empty badge version on badge "${badgeSrc}"`);
   }
 
-  return new TwitchBadge(badgeName, badgeVersion);
+  return new TwitchBadge(badgeName, badgeVersionReplacedComma);
 }
 
 export function parseBadges(badgesSrc: string): TwitchBadgesList {

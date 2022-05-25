@@ -37,6 +37,10 @@ export class TwitchBadgesList extends Array<TwitchBadge> {
     return this.find((e) => e.isVIP) != null;
   }
 
+  public get hasPrediction(): boolean {
+    return this.find((e) => e.isPrediction) != null;
+  }
+
   public toString(): string {
     return this.join(",");
   }
