@@ -238,5 +238,29 @@ describe("./message/twitch-types/usernotice", function () {
         subPlanRaw: "1000",
       });
     });
+
+    it("should be able to parse an announcement usernotice that was sent via IRC", function () {
+      const msg = parseTwitchMessage(
+        "@badge-info=;badges=broadcaster/1,glitchcon2020/1;color=#666666;display-name=NotKarar;emotes=;flags=;id=fb6f330a-b47e-4394-bdae-34c545143a1e;login=notkarar;mod=0;" +
+          "msg-id=announcement;room-id=89954186;subscriber=0;system-msg=;tmi-sent-ts=1651337290447;user-id=89954186;user-type= :tmi.twitch.tv USERNOTICE #notkarar :test"
+      ) as UsernoticeMessage;
+
+      assert.strictEqual(msg.ircCommand, "USERNOTICE");
+      assert.strictEqual(msg.ircTags["msg-param-color"], undefined);
+      assert.strictEqual(msg.eventParams.color, undefined);
+      assert.strictEqual(msg.messageTypeID, "announcement");
+    });
+
+    it("should be able to parse an announcement usernotice that was sent via web chat", function () {
+      const msg = parseTwitchMessage(
+        "@badge-info=;badges=broadcaster/1,glitchcon2020/1;color=#666666;display-name=NotKarar;emotes=;flags=;id=e409ccaf-c439-4438-9153-77a056eab544;login=notkarar;mod=0;" +
+          "msg-id=announcement;msg-param-color=PRIMARY;room-id=89954186;subscriber=0;system-msg=;tmi-sent-ts=1651337248093;user-id=89954186;user-type= :tmi.twitch.tv USERNOTICE #notkarar :test"
+      ) as UsernoticeMessage;
+
+      assert.strictEqual(msg.ircCommand, "USERNOTICE");
+      assert.strictEqual(msg.ircTags["msg-param-color"], "PRIMARY");
+      assert.strictEqual(msg.messageTypeID, "announcement");
+      assert.strictEqual(msg.eventParams.color, "PRIMARY");
+    });
   });
 });

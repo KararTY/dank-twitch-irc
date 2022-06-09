@@ -1,3 +1,4 @@
+export * from "./announce";
 export * from "./ban";
 export * from "./deleteMsg";
 export * from "./get-mods-vips";
