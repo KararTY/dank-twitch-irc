@@ -57,6 +57,23 @@ describe("./message/parser/twitch-message", function () {
         instanceOf: PrivmsgMessage,
       },
       {
+        irc:
+          "@badge-info=predictions/foo\\sbar\\\\n\\sbaz;badges=predictions/blue-1;" +
+          "client-nonce=15debb48897591dc6c0e8f1df61ee07b;color=#D2691E;display-name=BeFriendlier;" +
+          "emotes=;first-msg=0;flags=;id=58eef077-2f04-43ed-9624-5407fd1fd366;mod=0;room-id=99631238;" +
+          "subscriber=0;tmi-sent-ts=1653494875994;turbo=0;user-id=23729448;" +
+          "user-type= :befriendlier!befriendlier@befriendlier.tmi.twitch.tv PRIVMSG #zneix :-tags",
+        instanceOf: PrivmsgMessage,
+      },
+      {
+        irc:
+          "@badge-info=predictions/<<<<<<\\sHEAD[15A⸝asdf/test,founder/17;badges=predictions/pink-2,vip/1,founder/0,bits/1;" +
+          "client-nonce=9b836e232170a9df213aefdcb458b67e;color=#696969;display-name=NotKarar;emotes=;first-msg=0;flags=;" +
+          "id=e00881bd-5f21-4993-8bbd-1736cd13d42e;mod=0;room-id=99631238;subscriber=1;tmi-sent-ts=1653494879409;turbo=0;" +
+          "user-id=89954186;user-type= :notkarar!notkarar@notkarar.tmi.twitch.tv PRIVMSG #zneix :-tags",
+        instanceOf: PrivmsgMessage,
+      },
+      {
         irc: "@emote-only=1;room-id=40286300 :tmi.twitch.tv ROOMSTATE #randers",
         instanceOf: RoomstateMessage,
       },

@@ -43,6 +43,10 @@ export class TwitchBadge {
     return this.name === "vip";
   }
 
+  public get isPrediction(): boolean {
+    return this.name === "predictions";
+  }
+
   public toString(): string {
     return `${this.name}/${this.version}`;
   }

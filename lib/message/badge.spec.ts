@@ -18,6 +18,7 @@ describe("./message/badge", function () {
         ["staff", "1", (b) => b.isStaff],
         ["turbo", "1", (b) => b.isTurbo],
         ["vip", "1", (b) => b.isVIP],
+        ["predictions", "blue-1", (b) => b.isPrediction],
       ];
 
       for (const [badgeName, badgeVersion, getter] of testCases) {

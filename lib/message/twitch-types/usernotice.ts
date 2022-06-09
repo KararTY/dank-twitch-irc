@@ -27,6 +27,7 @@ const convertersMap: Record<string, (value: string) => any> = {
   "msg-param-mass-gift-count": convertToInt,
   "msg-param-origin-id": convertToString,
   "msg-param-sub-plan": convertToString,
+  "msg-param-color": convertToString,
 };
 
 export function getCamelCasedName(tagKey: string): string {
@@ -50,6 +51,10 @@ export function getCamelCasedName(tagKey: string): string {
 
 export interface EventParams {
   [key: string]: string | number | boolean;
+}
+
+export interface EventParamsMaybe {
+  [key: string]: string | undefined;
 }
 
 export function extractEventParams(tags: IRCMessageTags): EventParams {
@@ -156,9 +161,22 @@ export interface BitsBadgeTierParameters extends EventParams {
   thresholdRaw: string;
 }
 
+// announcement
+export interface AnnouncementParameters extends EventParamsMaybe {
+  color?: string;
+}
+
 export interface SpecificUsernoticeMessage<
   I extends string,
   E extends EventParams
+> {
+  readonly messageTypeID: I;
+  readonly eventParams: E;
+}
+
+export interface AnAnnouncementUsernoticeMessage<
+  I extends string,
+  E extends EventParamsMaybe
 > {
   readonly messageTypeID: I;
   readonly eventParams: E;
@@ -203,6 +221,10 @@ export type RitualUsernoticeMessage = SpecificUsernoticeMessage<
 export type BitsBadgeTierUsernoticeMessage = SpecificUsernoticeMessage<
   "bitsbadgetier",
   BitsBadgeTierParameters
+>;
+export type AnnouncementUsernoticeMessage = AnAnnouncementUsernoticeMessage<
+  "announcement",
+  AnnouncementParameters
 >;
 
 interface CheerUsernoticeMessage extends UsernoticeMessage {
@@ -367,5 +389,9 @@ export class UsernoticeMessage extends ChannelIRCMessage {
 
   public isBitsBadgeTier(): this is BitsBadgeTierUsernoticeMessage {
     return this.messageTypeID === "bitsbadgetier";
+  }
+
+  public isAnnouncement(): this is AnnouncementUsernoticeMessage {
+    return this.messageTypeID === "announcement";
   }
 }

@@ -4,12 +4,29 @@ import { ParseError } from "./parse-error";
 
 export function parseSingleBadge(badgeSrc: string): TwitchBadge {
   // src format: <badge>/<version>
+  // src format for predictions: <badge>/<text with maybe an additional "/" slash or one of those ⸝>
 
-  const [badgeName, badgeVersion] = badgeSrc.split("/", 2);
+  let badgeName;
+  let badgeVersion;
+
+  const firstSeparatorIndex = badgeSrc.indexOf("/");
+
+  if (firstSeparatorIndex === -1) {
+    badgeName = badgeSrc;
+  } else {
+    badgeName = badgeSrc.slice(0, firstSeparatorIndex);
+    badgeVersion = badgeSrc.slice(firstSeparatorIndex + 1);
+  }
+
   if (badgeName == null || badgeVersion == null) {
     throw new ParseError(
       `Badge source "${badgeSrc}" did not contain '/' character`
     );
+  }
+
+  // This is the predictions badge/badge-info, it should have badgeVersion escaped.
+  if (badgeName === "predictions") {
+    badgeVersion = badgeVersion.replace(/⸝/g, ",");
   }
 
   if (badgeName.length <= 0) {

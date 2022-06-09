@@ -29,6 +29,7 @@ import { ClientError } from "./errors";
 import { deleteMsg } from "../operations/deleteMsg";
 import { ConnectionPool } from "../mixins/connection-pool";
 import { validateMessageID } from "../validation/reply";
+import { announce } from "../operations/announce";
 
 const log = debugLogger("dank-twitch-irc:client");
 
@@ -251,6 +252,13 @@ export class ChatClient extends BaseClient {
     messageID: string
   ): Promise<void> {
     await deleteMsg(this.requireConnection(), channelName, messageID);
+  }
+
+  public async announce(
+    channelName: string,
+    messageText: string
+  ): Promise<void> {
+    await announce(this.requireConnection(), channelName, messageText);
   }
 
   public async whisper(username: string, message: string): Promise<void> {
