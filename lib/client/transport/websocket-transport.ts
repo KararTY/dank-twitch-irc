@@ -28,7 +28,7 @@ export class WebSocketTransport implements Transport {
     this.wsStream = new WebSocketDuplex({
       url: this.config.url,
       decodeStrings: false,
-      objectMode: true,
+      objectMode: false,
     });
     if (connectionListener != null) {
       this.wsStream.once("connect", connectionListener);
