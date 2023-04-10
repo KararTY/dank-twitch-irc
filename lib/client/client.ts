@@ -4,6 +4,7 @@ import { ClientMixin, ConnectionMixin } from "../mixins/base-mixin";
 import { IgnoreUnhandledPromiseRejectionsMixin } from "../mixins/ignore-promise-rejections";
 import { ConnectionRateLimiter } from "../mixins/ratelimiters/connection";
 import { PrivmsgMessageRateLimiter } from "../mixins/ratelimiters/privmsg";
+import { JoinRateLimiter } from "../mixins/ratelimiters/join";
 import { RoomStateTracker } from "../mixins/roomstate-tracker";
 import { UserStateTracker } from "../mixins/userstate-tracker";
 import { joinChannel, joinNothingToDo } from "../operations/join";
@@ -53,6 +54,7 @@ export class ChatClient extends BaseClient {
       this.use(new RoomStateTracker());
       this.use(new ConnectionRateLimiter(this));
       this.use(new PrivmsgMessageRateLimiter(this));
+      this.use(new JoinRateLimiter(this));
     }
 
     if (this.configuration.ignoreUnhandledPromiseRejections) {

@@ -1,3 +1,3 @@
 export * from "./config";
 export * from "./expanded";
-export * from "./message-rate-limits";
+export * from "./rate-limits";

@@ -8,10 +8,7 @@ import {
   TransportConfiguration,
   WebSocketTransportConfiguration,
 } from "./config";
-import {
-  messageRateLimitPresets,
-  MessageRateLimits,
-} from "./message-rate-limits";
+import { rateLimitPresets, RateLimits } from "./rate-limits";
 
 export type ExpandedDuplexTransportConfiguration =
   Required<DuplexTransportConfiguration>;
@@ -36,7 +33,7 @@ export type ExpandedClientConfiguration = Required<
 > & {
   password: string | undefined;
   connection: ExpandedTransportConfiguration;
-  rateLimits: MessageRateLimits;
+  rateLimits: RateLimits;
 };
 
 const defaults: Omit<
@@ -120,13 +117,13 @@ export function expandTransportConfig(
 
 export function expandRateLimitsConfig(
   config: RateLimitsConfig | undefined
-): MessageRateLimits {
+): RateLimits {
   if (config == null) {
-    return messageRateLimitPresets.default;
+    return rateLimitPresets.default;
   }
 
   if (typeof config === "string") {
-    return messageRateLimitPresets[config];
+    return rateLimitPresets[config];
   } else {
     return config;
   }
