@@ -21,7 +21,7 @@ export class SlowModeRateLimiter implements ClientMixin {
   }
 
   public applyToClient(client: ChatClient): void {
-    const genericReplament = async <A extends any[]>(
+    const genericReplacement = async <A extends any[]>(
       oldFn: (channelName: string, ...args: A) => Promise<void>,
       channelName: string,
       ...args: A
@@ -41,9 +41,9 @@ export class SlowModeRateLimiter implements ClientMixin {
     };
 
     applyReplacements(this, client, {
-      say: genericReplament,
-      me: genericReplament,
-      privmsg: genericReplament,
+      say: genericReplacement,
+      me: genericReplacement,
+      privmsg: genericReplacement,
     });
 
     if (client.roomStateTracker != null) {

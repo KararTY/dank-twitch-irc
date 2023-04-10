@@ -70,7 +70,7 @@ export interface ClientConfiguration {
   connection?: TransportConfiguration;
 
   /**
-   * Maximum number of channels the client will allow one connection to be joined to. 100 by default.
+   * Maximum number of channels the client will allow one connection to be joined to. 90 by default.
    */
   maxChannelCountPerConnection?: number;
 
