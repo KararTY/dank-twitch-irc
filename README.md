@@ -749,7 +749,7 @@ and the mixins installed by default:
 - `new PrivmsgMessageRateLimiter(client)` - Rate limits outgoing messages
   according to the rate limits imposed by Twitch. Configure the verified/known
   status of your bot using the config (see above).
-- `new ConnectionRateLimiter(client)` - Rate limits new connections accoding to
+- `new ConnectionRateLimiter(client)` - Rate limits new connections according to
   the rate limits set in the config.
 - `new UserStateTracker(client)` - Used by other mixins. Keeps track of what
   state your bot user has in all channels.
@@ -759,6 +759,8 @@ and the mixins installed by default:
   `UnhandledPromiseRejectionWarning`s on promises returned by the client's
   functions. (installed for you if you activate the
   `ignoreUnhandledPromiseRejections` client option)
+- `new JoinRateLimiter(client)` - Rate limits new joins according to join rate
+  limits set in the config.
 
 ## Tests
 

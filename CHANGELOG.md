@@ -1,5 +1,9 @@
 # Changelog
 
+## Unversioned
+
+- Added JoinRateLimiter mixin.
+
 ## v6.0.0
 
 - Breaking: Removed majority of, since February 18th 2023, deprecated IRC commands.
