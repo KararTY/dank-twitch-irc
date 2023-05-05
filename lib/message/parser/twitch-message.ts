@@ -59,7 +59,7 @@ export const commandClassMap: {
   PONG: typeof PongMessage;
   CAP: typeof CapMessage;
 
-  [key: string]: typeof IRCMessage;
+  [key: string & Record<never, never>]: typeof IRCMessage;
 } = {
   CLEARCHAT: ClearchatMessage,
   CLEARMSG: ClearmsgMessage,
