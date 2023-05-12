@@ -1,5 +1,9 @@
 # Changelog
 
+## Unversioned
+
+- Dev: Added TypeScript IDE type hints for event names. (#12)
+
 ## v6.0.0
 
 - Breaking: Removed majority of, since February 18th 2023, deprecated IRC commands.
