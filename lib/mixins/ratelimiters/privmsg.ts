@@ -32,7 +32,7 @@ export class PrivmsgMessageRateLimiter implements ClientMixin {
       } finally {
         setTimeout(
           releaseFn,
-          this.client.configuration.rateLimits.privmsgInMs * 1000
+          this.client.configuration.rateLimits.privmsgInMs
         );
       }
     };
