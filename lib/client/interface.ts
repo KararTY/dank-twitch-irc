@@ -46,7 +46,7 @@ export type TwitchMessageEvents = {
 
 // these are all other messages that are not mapped to twitch messages specifically, e.g. 001
 export interface IRCMessageEvents {
-  [command: string]: [IRCMessage];
+  [command: string & Record<never, never>]: [IRCMessage];
 }
 
 export type ClientEvents = SpecificClientEvents &
