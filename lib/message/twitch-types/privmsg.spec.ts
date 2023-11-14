@@ -133,7 +133,7 @@ describe("./message/twitch-types/privmsg", function () {
       assert.isFalse(msg.isCheer());
     });
 
-    it("should be able to parse a real reply PRIVMSG message", function () {
+    it("should be able to parse a reply PRIVMSG message", function () {
       const msgText =
         "@badge-info=subscriber/5;badges=broadcaster/1,subscriber/0;" +
         "color=#19E6E6;display-name=randers;emotes=;flags=;id=7eb848c9-1060-4e5e-9f4c-612877982e79;mod=0;" +
@@ -167,7 +167,7 @@ describe("./message/twitch-types/privmsg", function () {
       assert.strictEqual(msg.extractUserState().displayName, "randers");
     });
 
-    it('should be able to parse a reply PRIVMSG message that has the text "foo=bar"', function () {
+    it('should be able to parse a reply PRIVMSG message that has the reply message body "foo=bar"', function () {
       const msgText =
         "@badge-info=;badges=;client-nonce=094fcf39e387204709c4cacb85d264e5;color=;display-name=survivedby_bot;emotes=;" +
         "first-msg=0;flags=;id=48dc5388-0dcd-4f56-8772-370397320186;mod=0;reply-parent-display-name=SomeUser;" +
