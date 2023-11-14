@@ -32,7 +32,7 @@ export function parseTags(tagsSrc: string | undefined): IRCMessageTags {
     let valueSrc;
     const indexOfFirstSeparator = tagSrc.indexOf("=");
     if (indexOfFirstSeparator !== -1) {
-      valueSrc = tagSrc.substring(indexOfFirstSeparator + 1);
+      valueSrc = tagSrc.slice(indexOfFirstSeparator + 1);
     }
 
     tags[key.toLowerCase()] = decodeValue(valueSrc);
