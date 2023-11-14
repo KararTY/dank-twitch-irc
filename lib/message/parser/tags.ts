@@ -27,12 +27,13 @@ export function parseTags(tagsSrc: string | undefined): IRCMessageTags {
   }
 
   for (const tagSrc of tagsSrc.split(";")) {
-    let key: string;
-    let valueSrc: string | undefined;
+    const key = tagSrc.split("=").shift() as string;
 
-    // eslint is bugged on this in the current version
-    // eslint-disable-next-line prefer-const
-    [key, valueSrc] = tagSrc.split("=", 2);
+    let valueSrc;
+    const indexOfFirstSeparator = tagSrc.indexOf("=");
+    if (indexOfFirstSeparator !== -1) {
+      valueSrc = tagSrc.substring(indexOfFirstSeparator + 1);
+    }
 
     tags[key.toLowerCase()] = decodeValue(valueSrc);
   }
