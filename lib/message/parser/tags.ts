@@ -29,13 +29,12 @@ export function parseTags(tagsSrc: string | undefined): IRCMessageTags {
   for (const tagSrc of tagsSrc.split(";")) {
     const key = tagSrc.split("=").shift() as string;
 
-    let valueSrc;
-    const indexOfFirstSeparator = tagSrc.indexOf("=");
-    if (indexOfFirstSeparator !== -1) {
-      valueSrc = tagSrc.slice(indexOfFirstSeparator + 1);
-    }
+    const keyValueDelimiter: number = tagSrc.indexOf("=");
 
-    tags[key.toLowerCase()] = decodeValue(valueSrc);
+    tags[tagSrc.slice(0, keyValueDelimiter)] =
+      keyValueDelimiter === -1
+        ? null
+        : decodeValue(tagSrc.slice(keyValueDelimiter + 1));
   }
 
   return tags;
