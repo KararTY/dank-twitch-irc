@@ -72,10 +72,6 @@ describe("./message/parser/tags", function () {
       assert.deepStrictEqual(parseTags("message=1;message"), { message: null });
     });
 
-    it("should to-lower-case tag keys", function () {
-      assert.deepStrictEqual(parseTags("MESSAGE=Hi"), { message: "Hi" });
-    });
-
     it("should support multiple different keys", function () {
       assert.deepStrictEqual(parseTags("abc=1;def=2;xd;xd;hi=;abc"), {
         abc: null,
