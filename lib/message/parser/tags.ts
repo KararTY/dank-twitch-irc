@@ -27,14 +27,17 @@ export function parseTags(tagsSrc: string | undefined): IRCMessageTags {
   }
 
   for (const tagSrc of tagsSrc.split(";")) {
-    const key = tagSrc.split("=").shift() as string;
-
     const keyValueDelimiter: number = tagSrc.indexOf("=");
 
-    tags[tagSrc.slice(0, keyValueDelimiter)] =
-      keyValueDelimiter === -1
-        ? null
-        : decodeValue(tagSrc.slice(keyValueDelimiter + 1));
+    // ">>>" turns any negative `keyValueDelimiter` into the max uint32, so we get the entire tagSrc for the key.
+    const key = tagSrc.slice(0, keyValueDelimiter >>> 0);
+
+    let valueSrc: string | null = null;
+    if (keyValueDelimiter !== -1) {
+      valueSrc = decodeValue(tagSrc.slice(keyValueDelimiter + 1));
+    }
+
+    tags[key] = valueSrc;
   }
 
   return tags;
