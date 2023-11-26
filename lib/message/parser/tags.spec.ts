@@ -3,9 +3,6 @@ import { decodeValue, parseTags } from "./tags";
 
 describe("./message/parser/tags", function () {
   describe("#decodeValue()", function () {
-    it("should decode undefined as null", function () {
-      assert.isNull(decodeValue(undefined));
-    });
     it("should decode empty string as empty string", function () {
       assert.strictEqual("", decodeValue(""));
     });

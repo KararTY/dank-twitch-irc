@@ -11,11 +11,7 @@ const decodeMap: Record<string, string> = {
 
 const decodeLookupRegex = /\\\\|\\:|\\s|\\n|\\r|\\/g;
 
-// if value is undefined (no = in tagSrc) then value becomes null
-export function decodeValue(value: string | undefined): string | null {
-  if (value == null) {
-    return null;
-  }
+export function decodeValue(value: string) {
   return value.replace(decodeLookupRegex, (m) => decodeMap[m] || "");
 }
 
@@ -32,6 +28,7 @@ export function parseTags(tagsSrc: string | undefined): IRCMessageTags {
     // ">>>" turns any negative `keyValueDelimiter` into the max uint32, so we get the entire tagSrc for the key.
     const key = tagSrc.slice(0, keyValueDelimiter >>> 0);
 
+    // if there's no = in tagSrc, valueSrc's null
     let valueSrc: string | null = null;
     if (keyValueDelimiter !== -1) {
       valueSrc = decodeValue(tagSrc.slice(keyValueDelimiter + 1));
