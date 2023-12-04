@@ -11,7 +11,7 @@ const decodeMap: Record<string, string> = {
 
 const decodeLookupRegex = /\\\\|\\:|\\s|\\n|\\r|\\/g;
 
-export function decodeValue(value: string) {
+export function decodeValue(value: string): string {
   return value.replace(decodeLookupRegex, (m) => decodeMap[m] || "");
 }
 
