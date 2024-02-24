@@ -256,10 +256,10 @@ declare module "debug-logger" {
      */
     export interface DebugLoggerConfig {
       /**
-       * Ensure that output from this module always beings after a newline on the terminal.
+       * Ensure that output from this module always begins after a newline on the terminal.
        * If you are using the console to output things not ending in a newline, e.g. progress bars,
        * and a logger function prints data while the console is not positioned on a new line,
-       * <code>debug-logger</code> will insert a newline first to ensure a new line beings before log output
+       * <code>debug-logger</code> will insert a newline first to ensure a new line begins before log output
        * is printed.
        */
       ensureNewline?: boolean;
