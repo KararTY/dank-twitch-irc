@@ -1,5 +1,9 @@
 # dank-twitch-irc
 
+I (kararty) am no longer supporting or updating kararty/dank-twitch-irc. While it may continue to work, I'm no longer making sure it will continue to do so in the future. This package will also not receive any dependency or security updates. For this reason I recommend you to choose [@mastondzn's fork](https://github.com/mastondzn/dank-twitch-irc), or to fork this project to continue development on it. Thank you.
+
+---
+
 This package is a fork of [robotty/dank-twitch-irc](https://github.com/robotty/dank-twitch-irc), with additional code from [fmalk/dank-twitch-irc](https://github.com/fmalk/dank-twitch-irc) & [amazeful/amazeful-twitch-irc](https://github.com/amazeful/amazeful-twitch-irc).
 
 ![Build](https://github.com/kararty/dank-twitch-irc/workflows/Build/badge.svg)
